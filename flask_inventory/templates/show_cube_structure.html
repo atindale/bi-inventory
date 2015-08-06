@@ -1,0 +1,90 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<ol class="breadcrumb">
+  <li><a href="/">Home</a></li>
+  <li><a href="/cubes">Cubes</a></li>
+  <li class="active">{{ this_cube.cube_name }}</li>
+</ol>
+
+	<div class="page-header">
+		<h1>Cube Structure</h1>
+	</div>
+
+	<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Cube Details</h3>
+  </div>		
+		<div class="panel-body">
+
+	<div class="col-md-3">
+		<div class="list-group">
+			<div class="list-group-item">
+				<h4 class="list-group-item-heading">Business Unit</h4>
+				<p class="list-group-item-text">{{ this_cube.business_unit }}</p>
+			</div>
+		</div>
+	</div>
+
+	<div class="col-md-6">
+		<div class="list-group">
+			<div class="list-group-item">
+				<h4 class="list-group-item-heading">Cube Name</h4>
+				<p class="list-group-item-text">{{ this_cube.cube_name }}</p>
+			</div>
+		</div>
+		<div class="list-group">
+			<div class="list-group-item">
+				<h4 class="list-group-item-heading">Cube Description</h4>
+				<p class="list-group-item-text">{{ this_cube.cube_description }}</p>
+			</div>
+		</div>
+	</div>
+
+	<div class="col-md-3">
+		<ul class="list-group">
+			<a href="/columns/{{ this_cube.cube_source }}" class="list-group-item">
+				<h4 class="list-group-item-heading">Source Table</h4>
+				<p class="list-group-item-text">{{ this_cube.cube_source }}</p>
+			</a>
+		</ul>
+
+	</div>
+
+</div>
+</div>
+
+
+	<div class="panel panel-default">
+		  <div class="panel-heading">
+    <h3 class="panel-title">Structure</h3>
+  </div>	
+		<div class="panel-body">
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Cube Name</th>
+				<th>Structure Type</th>
+				<th>Name</th>
+				<th>Parts</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for part in structure %}
+			<tr>
+				{% if loop.first %}
+				<td rowspan="{{ structure|length }}">{{ part.cube_name }}</td>
+				{% endif %}
+				<td>{{ part.structure_type }}</td>
+				<td>{{ part.structure_name }}</td>
+				<td>{{ part.structure_parts }}</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+</div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+
+{% block content %}
+	<ol class="breadcrumb">
+	  <li><a href="/">Home</a></li>
+	  <li class="active">Cubes</li>
+	</ol>
+	<div class="page-header">
+		<h1>Cubes</h1>
+	</div>
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Cube Name</th>
+				<th>Cube Description</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for group in cubes|groupby('business_unit') %}
+			<tr><td colspan="4"><strong>{{ group.grouper }}</strong></td></tr>
+			{% for cube in group.list %}
+			<tr>
+				<td class="col-md-4"><a href="/cube_structure/{{ cube.cube_name }}">{{ cube.cube_name }}</a></td>
+				<td>{{ cube.cube_description }}</td>
+			</tr>
+			{% endfor %}
+			{% endfor %}
+		</tbody>
+	</table>
+
+{% endblock %}

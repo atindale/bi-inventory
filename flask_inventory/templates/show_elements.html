@@ -1,0 +1,102 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<ol class="breadcrumb">
+  <li><a href="/">Home</a></li>
+  <li><a href="/reports">Reports</a></li>
+  <li class="active">{{ this_report.report_id }}</li>
+</ol>
+
+	<div class="page-header">
+		<h1>Report Elements</h1>
+	</div>
+
+	<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Report Details</h3>
+  </div>		
+		<div class="panel-body">
+
+	<div class="col-md-3">
+		<div class="list-group">
+			<div class="list-group-item">
+				<h4 class="list-group-item-heading">Business Unit</h4>
+				<p class="list-group-item-text">{{ this_report.business_unit }}</p>
+			</div>
+		</div>
+		<div class="list-group">
+			<div class="list-group-item">
+				<h4 class="list-group-item-heading">Report Owner</h4>
+				<p class="list-group-item-text">{{ this_report.report_owner }}</p>
+			</div>
+		</div>
+	</div>
+
+	<div class="col-md-6">
+		<div class="list-group">
+			<div class="list-group-item">
+				<h4 class="list-group-item-heading">Report ID</h4>
+				<p class="list-group-item-text">{{ this_report.report_id }}</p>
+			</div>
+		</div>
+		<div class="list-group">
+			<div class="list-group-item">
+				<h4 class="list-group-item-heading">Report Name</h4>
+				<p class="list-group-item-text">{{ this_report.report_name }}</p>
+			</div>
+		</div>
+		<div class="list-group">
+			<div class="list-group-item">
+				<h4 class="list-group-item-heading">Report Description</h4>
+				<p class="list-group-item-text">{{ this_report.report_description }}</p>
+			</div>
+		</div>
+	</div>
+
+	<div class="col-md-3">
+		<ul class="list-group">
+			<a href="/columns/{{ this_report.report_source }}" class="list-group-item">
+				<h4 class="list-group-item-heading">Report Source</h4>
+				<p class="list-group-item-text">{{ this_report.report_source }}</p>
+			</a>
+		</ul>
+
+	</div>
+
+</div>
+</div>
+
+
+	<div class="panel panel-default">
+		  <div class="panel-heading">
+    <h3 class="panel-title">Elements</h3>
+  </div>	
+		<div class="panel-body">
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Report ID</th>
+				<th>Element Name</th>
+				<th>Element Description</th>
+				<th>Element Notes</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for element in elements %}
+			<tr>
+				{% if loop.first %}
+				<td rowspan="{{ elements|length }}">{{ element.report_id }}</td>
+				{% endif %}
+				<td>{{ element.element_name }}</td>
+				<td>{{ element.element_description }}</td>
+				<td>{{ element.element_notes }}</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+</div>
+</div>
+
+{% endblock %}

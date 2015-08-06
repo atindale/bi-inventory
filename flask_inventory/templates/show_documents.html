@@ -1,0 +1,48 @@
+{% extends "layout.html" %}
+
+{% block content %}
+	<ol class="breadcrumb">
+	  <li><a href="/">Home</a></li>
+	  <li class="active">Documents</li>
+	</ol>
+	<div class="page-header">
+		<h1>Documents</h1>
+	</div>
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Document Name</th>
+				<th>Document Filename</th>
+				<th>Document Description</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for group in reports|groupby('business_unit') %}
+			<tr><td colspan="4"><strong>{{ group.grouper }}</strong></td></tr>
+			{% for report in group.list %}
+			<tr>
+				<td><a href="/elements/{{ report.report_id }}">{{ report.report_id }}</a></td>
+				<td>{{ report.report_name }}</td>
+				<td>{{ report.report_description }}</td>
+				<td>{{ report.report_owner }}</td>
+			</tr>
+			{% endfor %}
+			{% endfor %}
+		</tbody>
+
+		<tbody>
+			{% for group in documents|groupby('document_type') %}
+			<tr><td colspan="4"><strong>{{ group.grouper }}</strong></td></tr>
+			{% for document in group.list %}
+			<tr>
+				<td>{{ document.document_name }}</td>				
+				<td><a href="/static/documents/{{ document.document_filename }}">{{ document.document_filename }}</a></td>
+				<td>{{ document.document_description }}</td>
+			</tr>
+			{% endfor %}
+			{% endfor %}
+		</tbody>
+	</table>
+
+{% endblock %}

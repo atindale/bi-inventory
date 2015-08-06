@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% block content %}
+	<ol class="breadcrumb">
+	  <li><a href="/">Home</a></li>
+	  <li class="active">Tables</li>
+	</ol>
+	<div class="page-header">
+		<h1>Tables</h1>
+	</div>
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Table Name</th>
+				<th>Table Description</th>
+				<th>Update Frequency</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for table in tables %}
+			<tr>
+				<td><a href="/columns/{{ table.table_name }}">{{ table.table_name }}</a></td>
+				<td>{{ table.table_description }}</td>
+				<td>{{ table.update_frequency }}</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+{% endblock %}

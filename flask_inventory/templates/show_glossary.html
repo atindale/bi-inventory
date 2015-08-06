@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% block content %}
+	<ol class="breadcrumb">
+	  <li><a href="/">Home</a></li>
+	  <li class="active">Business Glossary</li>
+	</ol>
+	<div class="page-header">
+		<h1>Business Glossary</h1>
+	</div>
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Term</th>
+				<th>Term Description</th>
+				<th>Business Owner</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for term in glossary %}
+			<tr>
+				<td><a href="/xxxx/{{ term.glossary_term }}">{{ term.glossary_term }}</a></td>
+				<td>{{ term.glossary_term_description }}</td>
+				<td>{{ term.glossary_owner }}</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+{% endblock %}

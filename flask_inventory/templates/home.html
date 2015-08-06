@@ -1,0 +1,62 @@
+{% extends "layout.html" %}
+{% block content %}
+
+	<div class="jumbotron">
+		<h1>Health Support Queensland</h1>
+		<h2>Business Intelligence</h2>
+	    <p>These pages document the Health Support Queensland business intelligence and data warehouse platform. Select one of the options from below or from the menu above to explore the range of information available on the platform.</p>
+	    <ul>
+	    	<li><a href="{{ url_for('reports') }}">Reports</a></li>
+			<li><a href="{{ url_for('cubes') }}">Cubes</a></li>
+	    	<li><a href="{{ url_for('tables') }}">Datamarts</a></li>
+	    </ul>
+	    <p>Please contact Alan Tindale on 07 3131 6524 for further information on the HSQ Business Intelligence function and how we can support your information needs.
+
+	    <p>If you notice errors with any of the information presented here or in any surfaced data and reports then please also contact us.</p>
+	</div>
+
+	<div class="col-md-9">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h3 class="panel-title">Warehouse Load Status</h3>
+		</div>	
+		<div class="panel-body">
+			<table>
+				<tr>
+					<td class="col-md-10">Pathology Tests</td>
+					<td class="col-md-2 pull-right"><span class="label label-success">13/08/2015</span></td>
+				</tr>
+				<tr>
+					<td class="col-md-10">Biomedical Technology Services Equipment</td>
+					<td class="col-md-2 pull-right"><span class="label label-success">13/08/2015</span></td>
+				</tr>
+				<tr>
+					<td class="col-md-10">Biomedical Technology Services Work Orders</td>
+					<td class="col-md-2 pull-right"><span class="label label-success">13/08/2015</span></td>
+				</tr>
+				<tr>
+					<td class="col-md-10">Finance Account Balances</td>
+					<td class="col-md-2 pull-right"><span class="label label-warning">21/07/2015</span></td>
+				</tr>
+				<tr>
+					<td class="col-md-10">Finance GL Transactions</td>
+					<td class="col-md-2 pull-right"><span class="label label-success">13/08/2015</span></td>
+				</tr>
+				<tr>
+					<td class="col-md-10">Central Pharmacy Stock</td>
+					<td class="col-md-2 pull-right"><span class="label label-success">13/08/2015</span></td>
+				</tr>
+				<tr>
+					<td class="col-md-10">Supply</td>
+					<td class="col-md-2 pull-right"><span class="label label-success">13/08/2015</span></td>
+				</tr>
+				<tr>
+					<td class="col-md-10">Procurement and Logistics</td>
+					<td class="col-md-2 pull-right"><span class="label label-success">13/08/2015</span></td>
+				</tr>
+			</table>
+		</div>
+	</div>
+	</div>
+{% endblock %}
+	
