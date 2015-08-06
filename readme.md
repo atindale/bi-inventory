@@ -1,26 +1,27 @@
-# Intro to Flash
+# BI Inventory
 
 ## Overview
 
-This application started out from the Introduction to Flask tutorial on Tuts+. It has been developed further from trying out techiques and technologies. Eventually this will morph into a simple one-man-band projessional services business management application.
+This application presents business intelligence metadata and inventories to users.
 
 ## Grabbing this application
 
 Just execute the follwing command to grab the application.
 
 ```bash
-$ git clone https://github.com/atindale/intro_to_flask.git
+$ git clone https://github.com/atindale/bi-inventory.git
 ```
 
 ## Creating the database
 
 This application currently needs these tables:
 
-* clients
-* projects
-* vehicles
-* mileage
-* users
+* documents
+* tables
+* elements
+* reports
+* cubes
+* cube_structure
 
 Create them in MySQL with the following DDL.
 
@@ -91,10 +92,3 @@ You can run this application by:
 $ cd app
 $ python runserver.py
 ```
-
-## What's to do next
-
-1. Add CRUD to a page
-2. Look into using Datables for rich display of data
-3. Rename or clone the app and give it a project management name
-4. Add a dashboard type main page.
