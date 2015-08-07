@@ -26,47 +26,71 @@ This application currently needs these tables:
 Create them in MySQL with the following DDL.
 
 ```SQL
-CREATE TABLE `clients` (
-  `client_id` int(11) NOT NULL AUTO_INCREMENT,
-  `client_short_name` varchar(55) NOT NULL,
-  `client_name` varchar(255) NOT NULL,
-  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` datetime DEFAULT NULL,
-  PRIMARY KEY (`client_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
-
-CREATE TABLE `vehicles` (
-  `vehicle_id` int(11) NOT NULL AUTO_INCREMENT,
-  `make_model` varchar(45) NOT NULL,
-  `registration` varchar(10) NOT NULL,
-  PRIMARY KEY (`vehicle_id`)
+CREATE TABLE `columns` (
+  `column_key` int(11) NOT NULL AUTO_INCREMENT,
+  `table_name` varchar(45) DEFAULT NULL,
+  `column_name` varchar(45) DEFAULT NULL,
+  `column_format` varchar(45) DEFAULT NULL,
+  `column_length` varchar(45) DEFAULT NULL,
+  `column_label` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`column_key`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
-
-CREATE TABLE `mileage` (
-  `mileage_id` int(11) NOT NULL AUTO_INCREMENT,
-  `journey_date` date NOT NULL,
-  `vehicle_id` int(11) NOT NULL,
-  `start_km` int(11) DEFAULT NULL,
-  `end_km` int(11) DEFAULT NULL,
-  `journey` varchar(100) DEFAULT NULL,
-  `client_id` int(11) DEFAULT NULL,
-  `project_id` int(11) DEFAULT NULL,
-  `purpose` varchar(100) DEFAULT NULL,
-  PRIMARY KEY (`mileage_id`),
-  KEY `fk_mileage_vehicle1_idx` (`vehicle_id`),
-  KEY `fk_mileage_project1_idx` (`project_id`),
-  CONSTRAINT `fk_mileage_project1` FOREIGN KEY (`project_id`) REFERENCES `projects` (`project_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_mileage_vehicle1` FOREIGN KEY (`vehicle_id`) REFERENCES `vehicles` (`vehicle_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=79 DEFAULT CHARSET=utf8;
-
-CREATE TABLE `users` (
-  `uid` int(11) NOT NULL AUTO_INCREMENT,
-  `firstname` varchar(100) NOT NULL,
-  `lastname` varchar(100) NOT NULL,
-  `email` varchar(120) NOT NULL,
-  `pwdhash` varchar(100) NOT NULL,
-  PRIMARY KEY (`uid`),
-  UNIQUE KEY `email` (`email`)
+CREATE TABLE `cubes` (
+  `cube_key` int(11) NOT NULL AUTO_INCREMENT,
+  `business_unit` varchar(45) NOT NULL,
+  `cube_name` varchar(45) NOT NULL,
+  `cube_description` varchar(200) DEFAULT NULL,
+  `cube_source` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`cube_key`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+CREATE TABLE `cube_structure` (
+  `cube_structure_key` int(11) NOT NULL AUTO_INCREMENT,
+  `cube_name` varchar(45) DEFAULT NULL,
+  `structure_type` varchar(45) DEFAULT NULL,
+  `structure_name` varchar(45) DEFAULT NULL,
+  `structure_parts` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`cube_structure_key`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+CREATE TABLE `documents` (
+  `document_key` int(11) NOT NULL AUTO_INCREMENT,
+  `document_type` varchar(45) DEFAULT NULL,
+  `document_name` varchar(100) DEFAULT NULL,
+  `document_filename` varchar(100) DEFAULT NULL,
+  `document_description` varchar(200) DEFAULT NULL,
+  PRIMARY KEY (`document_key`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+CREATE TABLE `elements` (
+  `element_key` int(11) NOT NULL AUTO_INCREMENT,
+  `report_id` varchar(45) DEFAULT NULL,
+  `element_name` varchar(45) DEFAULT NULL,
+  `element_description` varchar(200) DEFAULT NULL,
+  `element_notes` varchar(200) DEFAULT NULL,
+  PRIMARY KEY (`element_key`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+CREATE TABLE `glossary` (
+  `glossary_key` int(11) NOT NULL AUTO_INCREMENT,
+  `glossary_term` varchar(100) DEFAULT NULL,
+  `glossary_term_description` varchar(200) DEFAULT NULL,
+  `glossary_owner` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`glossary_key`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+CREATE TABLE `reports` (
+  `report_key` int(11) NOT NULL AUTO_INCREMENT,
+  `business_unit` varchar(45) DEFAULT NULL,
+  `report_id` varchar(45) DEFAULT NULL,
+  `report_name` varchar(45) DEFAULT NULL,
+  `report_description` varchar(100) DEFAULT NULL,
+  `report_owner` varchar(45) DEFAULT NULL,
+  `report_source` varchar(45) DEFAULT NULL,
+  `report_source_type` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`report_key`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+CREATE TABLE `tables` (
+  `table_key` int(11) NOT NULL AUTO_INCREMENT,
+  `table_name` varchar(45) DEFAULT NULL,
+  `table_description` varchar(45) DEFAULT NULL,
+  `update_frequency` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`table_key`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 ```
 
@@ -74,7 +98,7 @@ Obviously create your own database and database user beforehand
 
 ```SQL
 $ mysql
-mysql> create database mydatabase
+mysql> create database warehouse_inventory
 mysql> create user 'newuser'@'localhost' identified by 'password';
 mysql> grant all privileges on *.* to 'newuser'@'localhost';
 ````
