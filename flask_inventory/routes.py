@@ -1,11 +1,11 @@
 from flask_inventory import app
 from flask import render_template, request, flash, session, url_for, redirect,jsonify
-from models import Report, Cube, Table, Element, Column, CubeStructure, Document, Glossary
+from models import Report, Cube, Table, Element, Column, CubeStructure, Document, Glossary, LoadStatus
 
 
 @app.route('/')
 def home():
-	return render_template('home.html')
+	return render_template('home.html', status = LoadStatus.query.order_by(LoadStatus.subject).all())
 
 @app.route('/about')
 def about():
@@ -28,6 +28,20 @@ def reports():
 def glossary():
 
 	return render_template('show_glossary.html', glossary = Glossary.query.order_by(Glossary.glossary_term).all())
+
+@app.route('/business_unit/<selected_unit>')
+def business_unit(selected_unit):
+
+	return render_template('show_business_unit.html',
+		selected_unit = selected_unit,
+		reports = Report.query.filter_by(business_unit=selected_unit).all(),
+		cubes = Cube.query.filter_by(business_unit=selected_unit).all()
+		)
+
+@app.route('/glossary_term/<selected_term>')
+def glossary_term(selected_term):
+
+	return render_template('show_glossary_term.html', term = Glossary.query.filter_by(glossary_term=selected_term).first())
 
 @app.route('/cubes')
 def cubes():

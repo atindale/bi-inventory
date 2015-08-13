@@ -22,38 +22,21 @@
 		</div>	
 		<div class="panel-body">
 			<table>
+				{% for item in status %}
 				<tr>
-					<td class="col-md-10">Pathology Tests</td>
-					<td class="col-md-2 pull-right"><span class="label label-success">13/08/2015</span></td>
+					<td class="col-md-10">{{ item.subject }}</td>
+					{% if item.status == "Success" %}
+					<td class="col-md-2 pull-right"><span class="label label-success">{{ item.last_load_dt }}
+					</span></td>
+					{% elif item.status == "Warning" %}
+					<td class="col-md-2 pull-right"><span class="label label-warning">{{ item.last_load_dt }}
+					</span></td>
+					{% else %}
+					<td class="col-md-2 pull-right"><span class="label label-failure">{{ item.last_load_dt }}
+					</span></td>
+					{% endif %}					
 				</tr>
-				<tr>
-					<td class="col-md-10">Biomedical Technology Services Equipment</td>
-					<td class="col-md-2 pull-right"><span class="label label-success">13/08/2015</span></td>
-				</tr>
-				<tr>
-					<td class="col-md-10">Biomedical Technology Services Work Orders</td>
-					<td class="col-md-2 pull-right"><span class="label label-success">13/08/2015</span></td>
-				</tr>
-				<tr>
-					<td class="col-md-10">Finance Account Balances</td>
-					<td class="col-md-2 pull-right"><span class="label label-warning">21/07/2015</span></td>
-				</tr>
-				<tr>
-					<td class="col-md-10">Finance GL Transactions</td>
-					<td class="col-md-2 pull-right"><span class="label label-success">13/08/2015</span></td>
-				</tr>
-				<tr>
-					<td class="col-md-10">Central Pharmacy Stock</td>
-					<td class="col-md-2 pull-right"><span class="label label-success">13/08/2015</span></td>
-				</tr>
-				<tr>
-					<td class="col-md-10">Supply</td>
-					<td class="col-md-2 pull-right"><span class="label label-success">13/08/2015</span></td>
-				</tr>
-				<tr>
-					<td class="col-md-10">Procurement and Logistics</td>
-					<td class="col-md-2 pull-right"><span class="label label-success">13/08/2015</span></td>
-				</tr>
+				{% endfor %}
 			</table>
 		</div>
 	</div>

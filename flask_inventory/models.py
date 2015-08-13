@@ -132,4 +132,19 @@ class Column(db.Model):
 		self.column_length = column_length
 		self.column_label = column_label
 
+class LoadStatus(db.Model):
+	__tablename__ = 'load_status'
+
+	load_status_key = db.Column(db.Integer, primary_key = True)
+	subject = db.Column(db.String(45))
+	status = db.Column(db.String(10))
+	last_load_dt = db.Column(db.Date)
+
+
+	def __init__(self, subject, status, last_load_dt):
+		self.subject = subject
+		self.status = status
+		self.last_load_dt = last_load_dtm
+
+
 

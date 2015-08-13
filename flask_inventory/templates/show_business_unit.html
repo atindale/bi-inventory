@@ -1,0 +1,95 @@
+{% extends "layout.html" %}
+
+{% block content %}
+	<ol class="breadcrumb">
+  <li><a href="/">Home</a></li>
+  <li><a href="/business_units">Business Unit</a></li>
+  <li class="active">{{ selected_unit }}</li>
+	</ol>
+
+	<div class="page-header">
+		<h1>{{ selected_unit }}</h1>
+	</div>
+	
+	<div class="panel-group" id="accordion">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h4 class="panel-title">
+					<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Reports</a>
+				</h4>
+			</div>
+			<div id="collapseOne" class="panel-collapse collapse in">
+				<div class="panel-body">
+          <div class="row">
+            <div class="col-md-2">
+	  				  <strong>Report</strong>            
+            </div>
+            <div class="col-md-4">
+				  	  <strong>Name</strong>            
+            </div>
+            <div class="col-md-4">
+					    <strong>Description</strong>
+            </div>
+          </div><!-- row -->  
+          {% for report in reports %}
+          <div class="row">
+            <div class="col-md-2">
+              <a href="/elements/{{ report.report_id }}">{{ report.report_id }}</a>
+            </div>
+            <div class="col-md-4">
+            {{ report.report_name }}
+            </div>
+            <div class="col-md-4">
+					    <em>{{ report.report_description }}</em>
+            </div>
+          </div><!-- row -->
+					{% endfor %}
+				</div><!-- panel-body -->
+			</div><!-- collpaseone -->
+		</div>
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h4 class="panel-title">
+					<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">Cubes</a>
+				</h4>
+			</div>
+			<div id="collapseTwo" class="panel-collapse collapse">
+				<div class="panel-body">
+          <div class="row">
+            <div class="col-md-4">
+	  				  <strong>Name</strong>            
+            </div>
+            <div class="col-md-4">
+					    <strong>Description</strong>
+            </div>
+          </div><!-- row -->  
+          {% for cube in cubes %}
+          <div class="row">
+            <div class="col-md-4">
+              <a href="/elements/{{ cube.cube_name }}">{{ cube.cube_name }}</a>
+            </div>
+            <div class="col-md-8">
+					    <em>{{ cube.cube_description }}</em>
+            </div>
+          </div><!-- row -->
+					{% endfor %}
+				</div>
+			</div>
+		</div>
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h4 class="panel-title">
+					<a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">Tables</a>
+				</h4>
+			</div>
+			<div id="collapseThree" class="panel-collapse collapse">
+				<div class="panel-body">
+					<p>Tables will go here</a></p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+{% endblock %}

@@ -1,0 +1,53 @@
+{% extends "layout.html" %}
+
+{% block content %}
+	<ol class="breadcrumb">
+	  <li><a href="/">Home</a></li>
+      <li><a href="/glossary">Business Glossary</a></li>
+	  <li class="active">{{ term.glossary_term }}</li>
+	</ol>
+
+	<div class="page-header">
+		<h1>{{ term.glossary_term }}</h1>
+	</div>
+
+  <p class="lead">{{ term.glossary_term_description }}</p>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Term Details</h3>
+    </div>
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="list-group">
+            <div class="list-group-item">
+              <h4 class="list-group-item-heading">Category</h4>
+              <p class="list-group-item-text">Pathology</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="list-group">
+            <div class="list-group-item">
+              <h4 class="list-group-item-heading">Steward</h4>
+              <p class="list-group-item-text">{{ term.glossary_owner }}</p>
+            </div>
+          </div>
+        </div>
+      </div><!-- row -->
+      <div class="row">
+        <div class="col-md-12">
+          <div class="list-group">
+            <div class="list-group-item">
+              <h4 class="list-group-item-heading">Status</h4>
+              <p class="list-group-item-text"><span class="label label-success">Approved</span></p>
+            </div>
+          </div>
+        </div>
+      </div><!-- row -->
+    </div><!-- panel body -->
+  </div><!-- panel -->
+{% endblock %}
