@@ -116,3 +116,7 @@ You can run this application by:
 $ cd app
 $ python runserver.py
 ```
+
+## Current Status
+
+This application is quite out of date. Local (non-GIT) copy has many changes and needs to be merged with this.
